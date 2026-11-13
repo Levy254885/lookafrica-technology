@@ -1,0 +1,39 @@
+@import '@fontsource-variable/montserrat';
+@import '@fontsource/poppins/300.css';
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@tailwind base; @tailwind components; @tailwind utilities;
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-cream text-ink font-sans antialiased; }
+  h1,h2,h3,h4 { @apply font-display font-bold text-ink; }
+  :focus-visible { outline: 2px solid #1E4F9E; outline-offset: 3px; border-radius: 4px; }
+}
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-page px-5 sm:px-8; }
+  .section { @apply py-16 sm:py-24; }
+  .h2 { @apply text-3xl leading-tight sm:text-4xl; }
+  .lead { @apply text-base leading-7 text-mute sm:text-lg sm:leading-8; }
+  .u-link { background: linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat; transition: background-size .3s ease; }
+  .u-link:hover, .u-link[aria-current='page'] { background-size: 100% 1px; }
+  .btn-red { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-red px-8 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-[#8f1521]; }
+  .btn-white { @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-base font-semibold text-red shadow-sm transition-transform duration-200 hover:-translate-y-0.5; }
+  .btn-butter { @apply inline-flex items-center rounded-full bg-butter px-6 py-2.5 text-sm font-semibold text-[#6b4a00] transition-colors hover:bg-[#f6dc86]; }
+  .eyebrow { @apply flex items-center gap-4 text-sm font-bold uppercase tracking-wide text-navy before:block before:h-0.5 before:w-10 before:shrink-0 before:bg-navy; }
+  .field { @apply w-full rounded-lg border border-line bg-white px-4 py-3 text-base text-ink placeholder:text-mute/60; }
+}
+.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { scrollbar-width: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition-duration: .01ms !important; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-track { display: flex; width: max-content; gap: .75rem; animation: marquee 50s linear infinite; }
+.marquee-rev { animation-direction: reverse; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto !important; } .marquee-track { animation: none; } }
+@keyframes kpulse { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(3); opacity: 0; } }
+.kpulse { transform-box: fill-box; transform-origin: center; animation: kpulse 2.6s ease-out infinite; }
+@keyframes kdash { to { stroke-dashoffset: -18; } }
+.kdash { animation: kdash 2.4s linear infinite; }
+@keyframes kfloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.kfloat { animation: kfloat 5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .kpulse, .kdash, .kfloat { animation: none; } }

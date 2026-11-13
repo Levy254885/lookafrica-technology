@@ -1,0 +1,8 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Enquiries are written only by the trusted /api/enquiry function (Admin SDK bypasses rules).
+    // Public clients can never read or write anything.
+    match /{document=**} { allow read, write: if false; }
+  }
+}
