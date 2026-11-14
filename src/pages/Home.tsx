@@ -10,6 +10,8 @@ import ToolsMarquee from '../components/ui/ToolsMarquee'
 import { ClientsMarquee } from '../components/ui/ClientsStrip'
 import ArrowLink from '../components/ui/ArrowLink'
 import KenyaMapSection from '../components/ui/KenyaMap'
+import HeroSlider from '../components/ui/HeroSlider'
+import ExploreGrid from '../components/ui/ExploreGrid'
 
 const stats = [[String(services.length), 'service areas', 'text-teal'], ['5', 'industries served', 'text-blue'], ['6', 'step delivery process', 'text-orange']]
 type T = { to: string; title: string; desc: string; icon: IconName; cls: string; span?: string }
@@ -30,16 +32,7 @@ export default function Home() {
   useSeo({ description: 'We design, engineer and deliver digital solutions that help businesses operate smarter, compete effectively and grow. Based in Kenya and East Africa, serving clients globally.', path: '/' })
   return (
     <>
-      <section className="wrap pt-6">
-        <Reveal className="relative isolate overflow-hidden rounded-2xl p-7 text-center shadow-sm sm:p-10">
-          <img src="/images/about/boardroom-skyline.webp" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#1a0f08]/85 via-[#8f3a0f]/70 to-[#f28c28]/50" />
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#ffd9a8]">Work with LOOK AFRICA</p>
-          <p className="mt-2 font-display text-2xl font-bold text-white sm:text-3xl">Technology built around your business.</p>
-          <p className="mx-auto mt-2 max-w-xl text-white/85">Tell us about your project and get a considered response from the team.</p>
-          <Link to="/contact" className="btn-white mt-5 w-full max-w-md sm:w-auto">Start a project <ArrowRight size={18} aria-hidden /></Link>
-        </Reveal>
-      </section>
+      <HeroSlider />
 
       <section className="wrap py-14 sm:py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -79,26 +72,7 @@ export default function Home() {
         <div className="wrap mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3"><ArrowLink to="/clients">All clients</ArrowLink><ArrowLink to="/technologies">All technologies</ArrowLink></div>
       </section>
 
-      <section className="wrap py-14 sm:py-20">
-        <Reveal className="mb-8 max-w-xl"><p className="eyebrow">Explore</p><h2 className="h2 mt-3">Everything in one place</h2></Reveal>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-6">
-          <div className="col-span-2 rounded-3xl bg-ink p-6 text-white sm:p-8 md:col-span-4 md:row-span-2">
-            <Link to="/services" className="group inline-flex items-center gap-2 font-display text-2xl font-bold sm:text-3xl">Services <ArrowRight className="transition-transform group-hover:translate-x-1" aria-hidden /></Link>
-            <p className="mt-2 max-w-md text-sm text-white/70">Six ways we help your business move forward.</p>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {services.map((s) => { const Ic = icons[s.icon]; return (
-                <li key={s.slug}><Link to={`/services/${s.slug}`} className="flex items-center gap-3 rounded-2xl bg-white/10 p-3 transition-colors hover:bg-white/20"><span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white text-red"><Ic size={18} aria-hidden /></span><span className="text-sm font-semibold">{s.title}</span></Link></li>
-              ) })}
-            </ul>
-          </div>
-          {tiles.map((t) => { const Ic = icons[t.icon]; return (
-            <Link key={t.to} to={t.to} className={`group flex min-h-[7.5rem] flex-col justify-between rounded-3xl p-5 transition-transform duration-300 hover:-translate-y-1 ${t.cls} ${t.span ?? ''}`}>
-              <span className="flex items-start justify-between"><Ic size={26} aria-hidden /><ArrowUpRight size={18} aria-hidden className="opacity-60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
-              <span><span className="block font-display text-lg font-bold">{t.title}</span><span className="mt-1 hidden text-sm opacity-80 sm:block">{t.desc}</span></span>
-            </Link>
-          ) })}
-        </div>
-      </section>
+      <ExploreGrid />
 
       <KenyaMapSection />
       <CtaBlock />
