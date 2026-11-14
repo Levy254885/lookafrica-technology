@@ -1,11 +1,15 @@
+import { part1 } from './articles/part1'
+import { part2 } from './articles/part2'
+import { part3 } from './articles/part3'
+import { part4 } from './articles/part4'
+
 export const categories = ['Technology', 'Software Engineering', 'Business Technology', 'Digital Transformation', 'Search and Digital Growth', 'Industry Insights'] as const
-export type Article = { slug: string; title: string; excerpt: string; category: (typeof categories)[number]; date: string; author: string; draft: boolean; body: string[] }
-export const articles: Article[] = [
-  { slug: 'website-web-app-or-custom-software', title: 'Website, web app or custom software: which does your business need?', category: 'Business Technology', date: '2026-11-13', author: 'LOOK AFRICA Technology team', draft: true,
-    excerpt: 'A plain-language way to decide what to build first.',
-    body: ['Many businesses ask for a website when the real problem is an internal process, or ask for custom software when a good website would do. The first step is to name the problem.', 'A website is right when you need to explain who you are, build trust and let people contact or buy from you. It is mostly about communication.', 'A web application is right when users must log in and do things: manage bookings, view documents or track orders. It is about interaction.', 'Custom software is right when your own operations are the bottleneck and off-the-shelf tools do not fit. It is about workflow.', 'Often the sensible path is to start with the smallest piece that proves value, then grow it.'] },
-  { slug: 'technical-seo-basics-new-website', title: 'Technical SEO basics for a new business website', category: 'Search and Digital Growth', date: '2026-11-13', author: 'LOOK AFRICA Technology team', draft: true,
-    excerpt: 'The foundations worth getting right before you publish.',
-    body: ['Search visibility starts with a site that search engines can read. That means unique page titles, clear descriptions and one main heading per page.', 'Speed matters. Optimised images, sensible hosting and limited scripts keep pages quick on mobile connections.', 'Structured data helps search engines and AI assistants understand who you are and what you offer. It should only describe facts that are true.', 'Finally, publish helpful content that answers the questions customers actually ask, and measure what brings them to you.'] },
-]
-export const readingTime = (a: Article) => Math.max(1, Math.round(a.body.join(' ').split(/\s+/).length / 200))
+export type Block = { h: string; p?: string[]; ul?: string[]; ol?: string[]; code?: string }
+export type Article = {
+  slug: string; title: string; excerpt: string; category: (typeof categories)[number]; date: string; author: string
+  keywords: string[]; service: string; blocks: Block[]; faq: [string, string][]
+}
+export const articles: Article[] = [...part1, ...part2, ...part3, ...part4]
+export const articleText = (a: Article) => [...a.blocks.flatMap((b) => [b.h, ...(b.p ?? []), ...(b.ul ?? []), ...(b.ol ?? [])]), ...a.faq.flat()].join(' ')
+export const readingTime = (a: Article) => Math.max(1, Math.round(articleText(a).split(/\s+/).length / 200))
+export const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
