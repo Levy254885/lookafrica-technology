@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { BASE_URL } from '../data/site'
 
-type Seo = { title?: string; description: string; path: string; type?: 'website' | 'article'; crumbs?: [string, string][]; jsonLd?: object }
+type Seo = { title?: string; description: string; path: string; type?: 'website' | 'article'; crumbs?: [string, string][]; jsonLd?: object | object[] }
 const setTag = (sel: string, attr: string, key: string, val: string) => {
   let el = document.head.querySelector<HTMLElement>(sel)
   if (!el) { el = document.createElement(sel.startsWith('link') ? 'link' : 'meta'); el.setAttribute(attr, key); document.head.appendChild(el) }
@@ -22,7 +22,7 @@ export function useSeo({ title, description, path, type = 'website', crumbs, jso
     setTag('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image')
     const graph: object[] = []
     if (crumbs) graph.push({ '@type': 'BreadcrumbList', itemListElement: crumbs.map(([n, p], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: BASE_URL + p })) })
-    if (jsonLd) graph.push(jsonLd)
+    if (jsonLd) graph.push(...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]))
     let s = document.getElementById('page-ld') as HTMLScriptElement | null
     if (graph.length) {
       if (!s) { s = document.createElement('script'); s.id = 'page-ld'; s.type = 'application/ld+json'; document.head.appendChild(s) }
