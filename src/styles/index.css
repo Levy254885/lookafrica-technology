@@ -37,3 +37,16 @@
 @keyframes kfloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 .kfloat { animation: kfloat 5s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .kpulse, .kdash, .kfloat { animation: none; } }
+@keyframes kdraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.kdraw { stroke-dasharray: 1; animation: kdraw 2.2s ease-out both; }
+@keyframes kripple { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(7); opacity: 0; } }
+.kripple { transform-box: fill-box; transform-origin: center; animation: kripple 3s ease-out infinite; }
+@keyframes kspin { to { transform: rotate(360deg); } }
+.kradar { animation: kspin 7s linear infinite; }
+@keyframes kscan { 0% { transform: translateY(0); } 100% { transform: translateY(680px); } }
+.kscan { animation: kscan 5s linear infinite; }
+@keyframes ktw { 0%,100% { opacity: 0; } 50% { opacity: .9; } }
+.ktwinkle { animation: ktw 3.2s ease-in-out infinite; opacity: 0; }
+@keyframes kpop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.kpop { animation: kpop .5s cubic-bezier(.2,1.4,.4,1) both; }
+@media (prefers-reduced-motion: reduce) { .kdraw, .kripple, .kradar, .kscan, .ktwinkle, .kpop { animation: none; } }
