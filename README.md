@@ -1,31 +1,27 @@
 # LOOK AFRICA TECHNOLOGY website
-React + Vite + TypeScript + Tailwind + React Router + Motion + Lucide. Design follows the reference UI supplied by the owner (cream background, navy eyebrows, red buttons, Montserrat headings, Poppins body).
+React + Vite + TypeScript + Tailwind + React Router + Motion + Lucide. Domain: https://lookafrica.co.ke
 
-## Setup
+## Develop and build
     npm install
-    npm run dev        # http://localhost:5173
-    npm run build      # type-check + production build
+    npm run dev
+    npm run build      # type-check, vite build, then scripts/prerender.mjs
 
-`/api/enquiry` is a Vercel serverless function, so use `vercel dev` to test the contact form locally. Without Firebase variables the form honestly reports that the service is not configured.
+`scripts/prerender.mjs` runs after the build and writes a real HTML file for every route (own title, description, canonical, Open Graph, structured data and readable content), plus sitemap.xml and robots.txt for the domain. Search engines therefore see full pages immediately, with no waiting for JavaScript. If it ever fails it logs a warning and the normal build still succeeds.
+
+## Domain and Search Console (no code changes needed)
+1. Vercel: Project > Settings > Domains > add `lookafrica.co.ke` (apex is primary) and `www.lookafrica.co.ke`. `vercel.json` already redirects www to the apex.
+2. Add the DNS records Vercel shows at your .co.ke registrar.
+3. Google Search Console: Add property > **Domain** > verify with the DNS TXT record. This does not touch the site.
+   Alternative (HTML tag): set `GOOGLE_SITE_VERIFICATION` in Vercel environment variables and redeploy; the tag is added to every page.
+4. In Search Console: Sitemaps > submit `https://lookafrica.co.ke/sitemap.xml`. Use URL Inspection > Request indexing for the home page and the six Kenya pages.
+5. Also add the site in Bing Webmaster Tools (you can import from Search Console).
+To change the domain later, set `SITE_URL` in Vercel and update `BASE_URL` in `src/data/site.ts`.
 
 ## Firebase enquiries
-1. Create a Firebase project and enable Firestore.
-2. Create a service account and set FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL and FIREBASE_PRIVATE_KEY in Vercel (see .env.example). These are server-only.
-3. Deploy `firestore.rules` (deny all client access; the function writes with the Admin SDK).
-4. Validation, sanitising, a honeypot field and a best-effort rate limit run server-side. For stronger limits add Vercel Firewall rate limiting. Email notifications can be added inside the function with a server-side provider key.
-
-## Deploy
-Push to GitHub, import in Vercel (Vite preset). `vercel.json` rewrites SPA routes and leaves /api alone. Update sitemap.xml when adding routes.
+Set FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL and FIREBASE_PRIVATE_KEY in Vercel (server-only). Deploy `firestore.rules`. See `api/enquiry.ts`.
 
 ## Editing content
-- Services: src/data/services.ts. Industries: src/data/industries.ts. FAQ, process, about, legal: src/data/content.ts.
-- Projects: add authorised entries to src/data/projects.ts; /work and /work/<slug> update automatically.
-- Articles: add to src/data/insights.ts (the two current articles are marked editorial drafts).
-- Founder bio: about.founder in src/data/content.ts.
-- Images: public/images, documented in IMAGE_MANIFEST.md (licences still to be verified).
-
-## Adding clients
-Put the logo in `public/images/clients/`, then add `{ name, logo, url }` to `src/data/clients.ts`. A "Clients we have worked with" section appears on the homepage and Our Work page once the list has entries. Only add clients who have agreed to be shown.
-
-## Social links
-Set the real profile URLs in `social` inside `src/data/site.ts`. The floating WhatsApp button and footer icons use these.
+- Services: src/data/services.ts. Industries: src/data/industries.ts. Kenya keyword pages: src/data/landing.ts.
+- Insights articles: src/data/articles/part1-4.ts. Clients: src/data/clients.ts. Social URLs: src/data/site.ts.
+- FAQ, process, about, legal: src/data/content.ts. Images: public/images (see IMAGE_MANIFEST.md).
+After adding a page or article, the prerender step includes it automatically if it is added to scripts/routes.ts and src/App.tsx.
