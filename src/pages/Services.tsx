@@ -23,7 +23,7 @@ export function ServicesIndex() {
                 <img src={s.image} alt={s.imageAlt} loading="lazy" className="aspect-[16/9] w-full rounded-xl object-cover" />
                 <div className="mt-5 flex items-center gap-4"><IconCircle name={s.icon} i={i} size="h-11 w-11" /><h2 className="text-xl">{s.title}</h2></div>
                 <p className="mt-3 flex-1 text-sm leading-6 text-mute">{s.short}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red">Learn more <ArrowRight size={16} aria-hidden className="transition-transform group-hover:translate-x-1" /></span>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red">Learn more </span>
               </Link>
             </Reveal></li>
           ))}
@@ -49,7 +49,7 @@ function View({ s }: { s: Service }) {
     <>
       <PageHero eyebrow="Service" crumbs={[['Services', '/services'], [s.title, path]]} title={s.title} text={s.intro} image={s.image} alt={s.imageAlt}>
         <Link to="/contact" className="btn-red">Start a project</Link>
-        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-red u-link">Talk to our team →</a>
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-red u-link">Talk to our team</a>
       </PageHero>
       <section className="wrap section">
         <SectionHead eyebrow="Problems we solve" title="Where businesses get stuck" />
