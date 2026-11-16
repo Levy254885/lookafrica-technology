@@ -43,7 +43,7 @@ export function ServiceDetail() {
 function View({ s }: { s: Service }) {
   const path = `/services/${s.slug}`
   useSeo({ title: s.title, description: `${s.intro} ${s.short}`, path, crumbs: [['Services', '/services'], [s.title, path]],
-    jsonLd: { '@type': 'Service', name: s.title, description: s.short, provider: { '@type': 'Organization', name: 'LOOK AFRICA TECHNOLOGY', url: 'https://lookafrica.com' } } })
+    jsonLd: { '@type': 'Service', name: s.title, description: s.short, provider: { '@type': 'Organization', name: 'LOOK AFRICA TECHNOLOGY', url: 'https://lookafrica.co.ke' } } })
   const related = s.related.map((r) => services.find((x) => x.slug === r)!)
   return (
     <>
