@@ -2,6 +2,7 @@ import { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { MotionConfig } from 'motion/react'
 import Layout from './components/layout/Layout'
+import { landing } from './data/landing'
 
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
@@ -12,6 +13,7 @@ const WhyUs = lazy(() => import('./pages/Company').then((m) => ({ default: m.Why
 const ClientsPage = lazy(() => import('./pages/Company').then((m) => ({ default: m.ClientsPage })))
 const Technologies = lazy(() => import('./pages/Company').then((m) => ({ default: m.Technologies })))
 const FaqPage = lazy(() => import('./pages/Company').then((m) => ({ default: m.FaqPage })))
+const Landing = lazy(() => import('./pages/Landing'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const ServicesIndex = lazy(() => import('./pages/Services').then((m) => ({ default: m.ServicesIndex })))
 const ServiceDetail = lazy(() => import('./pages/Services').then((m) => ({ default: m.ServiceDetail })))
@@ -45,6 +47,7 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="privacy-policy" element={<Legal kind="privacy" />} />
           <Route path="terms-of-service" element={<Legal kind="terms" />} />
+          {landing.map((l) => <Route key={l.slug} path={l.slug} element={<Landing slug={l.slug} />} />)}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
