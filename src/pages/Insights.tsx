@@ -36,7 +36,7 @@ export function Insights() {
                 <Meta a={a} />
                 <h2 className="mt-4 text-lg leading-snug transition-colors group-hover:text-copper">{a.title}</h2>
                 <p className="mt-3 flex-1 text-sm leading-6 text-mute">{a.excerpt}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red">Read the guide <ArrowRight size={16} aria-hidden className="transition-transform group-hover:translate-x-1" /></span>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red">Read the guide </span>
               </Link>
             </motion.li>
           ))}
