@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://lookafrica.com'
+export const BASE_URL = 'https://lookafrica.co.ke'
 export const site = {
   name: 'LOOK AFRICA TECHNOLOGY', parent: 'LOOK AFRICA GROUP LIMITED',
   tagline: 'Technology that moves business forward.',
