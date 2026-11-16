@@ -29,8 +29,8 @@ export default function ProcessExplorer({ dark = false, detailed = false }: { da
           <p className={`mt-3 max-w-xl leading-7 ${dark ? 'text-white/75' : 'text-mute'}`}>{desc}</p>
           {detailed && <ul className="mt-6 space-y-2">{m.gets.map((g) => <li key={g} className="flex gap-3 text-sm"><Check size={18} className="mt-0.5 shrink-0 text-teal" aria-hidden />{g}</li>)}</ul>}
           <div className="mt-8 flex gap-3">
-            <button onClick={() => setA(Math.max(0, a - 1))} disabled={a === 0} aria-label="Previous step" className="grid h-11 w-11 place-items-center rounded-full border border-current opacity-70 disabled:opacity-25"><ArrowLeft size={18} /></button>
-            <button onClick={() => setA(Math.min(5, a + 1))} disabled={a === 5} aria-label="Next step" className="grid h-11 w-11 place-items-center rounded-full bg-copper text-white disabled:opacity-40"><ArrowRight size={18} /></button>
+            <button onClick={() => setA(Math.max(0, a - 1))} disabled={a === 0} className="rounded-full border border-current px-5 py-2.5 text-sm font-semibold opacity-70 disabled:opacity-25">Back</button>
+            <button onClick={() => setA(Math.min(5, a + 1))} disabled={a === 5} className="rounded-full bg-copper px-5 py-2.5 text-sm font-semibold text-white disabled:opacity-40">Next step</button>
           </div>
         </motion.div>
       </AnimatePresence>
