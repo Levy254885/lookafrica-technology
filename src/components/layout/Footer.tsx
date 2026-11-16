@@ -3,6 +3,7 @@ import { Mail, MapPin } from 'lucide-react'
 import { mailto, site, whatsappLink } from '../../data/site'
 import { services } from '../../data/services'
 import { industries } from '../../data/industries'
+import { landing } from '../../data/landing'
 import SocialLinks, { WhatsAppGlyph } from '../ui/Social'
 
 const l = 'text-sm text-white/80 hover:text-white'
@@ -27,10 +28,11 @@ export default function Footer() {
             </ul>
             <SocialLinks className="mt-6" size={38} />
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-8">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
             <Col t="Services" items={services.map((s) => [s.title, `/services/${s.slug}`])} />
             <Col t="Industries" items={industries.map((s) => [s.title, `/industries/${s.slug}`])} />
-            <Col cls="col-span-2 sm:col-span-1" t="Company" items={[['About us', '/about'], ['How we work', '/how-we-work'], ['Our Work', '/work'], ['Insights', '/insights'], ['Clients', '/clients'], ['FAQs', '/faq'], ['Contact', '/contact']]} />
+            <Col t="In Kenya" items={landing.map((l) => [l.short, `/${l.slug}`])} />
+            <Col t="Company" items={[['About us', '/about'], ['How we work', '/how-we-work'], ['Our Work', '/work'], ['Insights', '/insights'], ['Clients', '/clients'], ['FAQs', '/faq'], ['Contact', '/contact']]} />
           </div>
         </div>
         <div className="mt-10 flex flex-col gap-3 border-t border-white/15 pt-6 text-xs text-white/60 sm:flex-row sm:justify-between">
