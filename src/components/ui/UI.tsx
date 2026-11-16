@@ -13,7 +13,7 @@ export function IconCircle({ name, i = 0, size = 'h-14 w-14' }: { name: IconName
 }
 export function Crumbs({ items }: { items: [string, string][] }) {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-mute">
+    <nav aria-label="Breadcrumb" className="hidden text-sm text-mute sm:block">
       <ol className="flex flex-wrap gap-2">
         <li><Link className="u-link" to="/">Home</Link></li>
         {items.map(([n, p], i) => <li key={p} className="flex gap-2"><span aria-hidden>/</span>{i === items.length - 1 ? <span aria-current="page" className="text-ink">{n}</span> : <Link className="u-link" to={p}>{n}</Link>}</li>)}
@@ -29,7 +29,7 @@ export function PageHero({ eyebrow, title, text, image, alt, crumbs, children }:
         <div className={`mt-8 grid items-center gap-10 ${image ? 'lg:grid-cols-2 lg:gap-16' : ''}`}>
           <div>
             <p className="eyebrow">{eyebrow}</p>
-            <h1 className="mt-5 text-4xl leading-[1.12] sm:text-5xl">{title}</h1>
+            <h1 className="mt-4 text-3xl leading-[1.15] sm:text-5xl">{title}</h1>
             <p className="lead mt-6 max-w-xl">{text}</p>
             {children && <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">{children}</div>}
           </div>
@@ -52,11 +52,11 @@ export function CtaBlock({ title = 'Ready to build something that moves your bus
   return (
     <section className="section">
       <div className="wrap">
-        <Reveal className="rounded-3xl bg-red p-8 text-center text-white sm:p-14">
-          <h2 className="mx-auto max-w-2xl text-3xl leading-tight !text-white sm:text-4xl">{title}</h2>
+        <Reveal className="rounded-3xl bg-red p-7 text-center text-white sm:p-14">
+          <h2 className="mx-auto max-w-2xl text-2xl leading-tight !text-white sm:text-4xl">{title}</h2>
           <p className="mx-auto mt-4 max-w-xl text-white/85">{text}</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link to="/contact" className="btn-white">Start a project <ArrowRight size={18} aria-hidden /></Link>
+            <Link to="/contact" className="btn-white">Start a project </Link>
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-white underline underline-offset-4">Talk to our team on WhatsApp</a>
           </div>
         </Reveal>
