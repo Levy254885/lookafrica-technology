@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://lookafrica.com/sitemap.xml
+
+Sitemap: https://lookafrica.co.ke/sitemap.xml
