@@ -6,9 +6,10 @@ import { ClientsMarquee } from '../components/ui/ClientsStrip'
 import KenyaMapSection from '../components/ui/KenyaMap'
 import HeroSlider from '../components/ui/HeroSlider'
 import ExploreGrid from '../components/ui/ExploreGrid'
+import { landing } from '../data/landing'
 
 export default function Home() {
-  useSeo({ description: 'We design, engineer and deliver digital solutions that help businesses operate smarter, compete effectively and grow. Based in Kenya and East Africa, serving clients globally.', path: '/' })
+  useSeo({ title: 'Software Development Company in Kenya', description: 'LOOK AFRICA TECHNOLOGY is a software development company in Kenya. We build custom software, SaaS platforms, websites and mobile apps for businesses in Kenya and worldwide.', path: '/' })
   return (
     <>
       <HeroSlider />
@@ -33,6 +34,11 @@ export default function Home() {
         <div className="mt-4"><ToolsMarquee /></div>
       </section>
       <ExploreGrid />
+      <section className="wrap pb-4 sm:pb-8">
+        <h2 className="h2">Software development in Kenya</h2>
+        <p className="lead mt-4 max-w-3xl">LOOK AFRICA TECHNOLOGY is a software development company in Kenya. We build custom software, web applications, e-commerce websites and mobile apps, with M-Pesa integration and search visibility built in, for clients in Kenya, East Africa and worldwide.</p>
+        <ul className="mt-5 flex flex-wrap gap-2">{landing.map((l) => <li key={l.slug}><Link to={`/${l.slug}`} className="inline-block rounded-full bg-soft px-4 py-2 text-sm font-medium text-navy transition-colors hover:bg-butter">{l.title}</Link></li>)}</ul>
+      </section>
       <KenyaMapSection />
       <CtaBlock />
     </>
