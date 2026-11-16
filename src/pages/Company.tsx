@@ -43,7 +43,7 @@ export function ClientsPage() {
       <section className="border-y border-line bg-white py-10"><ClientsMarquee /></section>
       <section className="wrap section">
         <ul className="divide-y divide-line border-y border-line">
-          {clients.map((c) => <li key={c.name}><a href={c.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 py-5"><span><span className="block font-display text-lg font-bold group-hover:text-copper">{c.name}</span><span className="text-sm text-mute">{c.note ?? c.domain}</span></span><ArrowUpRight className="text-red transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden /></a></li>)}
+          {clients.map((c) => <li key={c.name}><a href={c.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 py-5"><span><span className="block font-display text-lg font-bold group-hover:text-copper">{c.name}</span><span className="text-sm text-mute">{c.note ?? c.domain}</span></span></a></li>)}
         </ul>
         <p className="mt-6 text-sm text-mute">These are a few of the organisations we work with.</p>
       </section>
